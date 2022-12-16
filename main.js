@@ -12,10 +12,33 @@
 const computerChoicesArray = ["rock", "paper", "scissors"]; //create array with 3 choice pool 
 
 function getComputerChoice () { //creating function name
-    const computerChoicesArray = options[(Math.random() * computerChoicesArray.length)]; //computerChoicesArray[] brackets since its array
+    const computerChoice = computerChoicesArray[Math.floor(Math.random() * computerChoicesArray.length)]; //computerChoicesArray[] brackets since its array
+    console.log(computerChoice);
 }//(Math.random() * computerChoicesArray.length) in parenthesis for operation precedence(i think)
 // math.random function returns random number between 0 and 1. 
 // * computerChoicesArray.length mulitplies the random by the array length
 
+function checkWinner(playerSelection, computerSelection) {
+    if(playerSelection === computerSelection) {
+        return "Tie";
+    }
+    else if(
+    (playerSelection == "rock" && computerSelection == "scissors") ||
+    (playerSelection == "scissors" && computerSelection == "paper") ||
+    (playerSelection == "paper" && computerSelection == "rock")
+    ){
+        return "Player";
+    }
+    else{
+        return "Computer";
+    }
+
+
+
+function playRound(playerSelection, computerSelection){
+
+}
+
 getComputerChoice();
+
 
