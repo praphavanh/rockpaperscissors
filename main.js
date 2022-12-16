@@ -85,13 +85,31 @@ function playRound(playerSelection, computerSelection){ //check for returned val
 
 function game() { //keep track of 5 rounds
     console.log(`Welcome!`)
+    let playerScore = 0; //cosnt cant change value, let we can
+    let computerScore = 0; //cosnt cant change value, let we can
+
     for (let i = 0; i < 5; i++) { //we will be changing value of i in each iteration, until i is less than 5 0-4
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
+        const playerSelection = getPlayerChoice(); //variable for the getPlayerChoice funtion
+        const computerSelection = getComputerChoice(); //variable for the getComputerChoice funtion
+        console.log(playRound(playerSelection, computerSelection)); //playRound fucntion in console
+        if(checkWinner(playerSelection, computerSelection) == "Player") { //checkWinner will iterate score values we let
+            playerScore++; //iterates playerScore by 1
+        }
+        else if(checkWinner(playerSelection, computerSelection) == "Computer"){
+            computerScore++; //iterates computerscore by 1
+        }
+    }
+    console.log("Game Over")
+    if (playerScore > computerScore){ //
+        console.log("Player is the Winner!");
+    }
+    else if (computerScore > playerScore) {
+        console.log("Computer is the Winner!");
+    }
+    else {
+        console.log("It was a tie!");
     }
 }
-
 
 game()
 
