@@ -9,20 +9,35 @@
 //set win/lose parameters compared to computer choice
 //return win loss to user between input and random choice 
 //return computerChoicesArray[Math.floor(Math.random() * computerChoicesArray.length)]; //random is 0 to x.9999. math.Floor rounds decimal down to choose what object in the array. .length tells what number to multiply by length of array
-const computerOptionsArray = ["rock", "paper", "scissors"]; //create array with 3 choice pool 
-const playerSelection = "paper";
+const options = ["rock", "paper", "scissors"]; //create array with 3 choice pool 
+
+function getPlayerChoice() { //holds input of user in playerchoice
+    let validatedInput = false; //variable of validatedInput is empty
+    while(validatedInput == false){ //while empty
+        const choice = prompt(`"Rock" "Paper" "Scissors"`); //prompt for user to put in either of the 3
+        if (choice == null) { //checking empty input
+            continue;
+        }
+        const choiceInLower = choice.toLowerCase();//.toLowerCase method convert string to lowercase to run through functions
+        if (options.includes(choiceInLower)){ //checks if input is in our choice array
+            validatedInput = true; //then it is true
+            return choiceInLower; // return the input into lowercase to match our array items
+        }
+    }
+
+}
 
 function getComputerChoice () { //creating function name
-    const computerChoice = computerOptionsArray[Math.floor(Math.random() * computerOptionsArray.length)]; //computerChoicesArray[] brcomputerSelectionackets since its array
+    const computerChoice = options[Math.floor(Math.random() * options.length)]; 
     return computerChoice //return so computerChoice has a value outside of the function
-    console.log(`Computer Chose ${computerSelection}`);
+
 }//(Math.random() * computerChoicesArray.length) in parenthesis for operation precedence(i think)
 // math.random function returns random number between 0 and 1. 
 // * computerChoicesArray.length mulitplies the random by the array length
 
-const computerSelection = getComputerChoice();
 
-function checkWinner(playerSelection, computerSelection){
+
+function checkWinner(playerSelection, computerSelection){ //checking for winner of the two choices
     if(playerSelection == computerSelection) {
         return "Tie";
     }
@@ -38,7 +53,7 @@ function checkWinner(playerSelection, computerSelection){
     }
 }
 
-function suggestChoice(){
+function suggestChoice(computerSelection){ //function for a suggestion when returned computer wins in literal template
     if (computerSelection == "scissors"){
         return "rock";
     }
@@ -50,7 +65,9 @@ function suggestChoice(){
     }
 }
 
-function playRound(playerSelection, computerSelection){
+const suggestChoiceSelection = suggestChoice();
+
+function playRound(playerSelection, computerSelection){ //check for returned value of checkWinner to tell user of outcome
     const result = checkWinner(playerSelection, computerSelection);
     if(result == "Tie"){
         return `It's a Tie! ${playerSelection} was on their mind too.`;
@@ -64,11 +81,25 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-//testing
 
 
+function game() { //keep track of 5 rounds
+    console.log(`Welcome!`)
+    for (let i = 0; i < 5; i++) { //we will be changing value of i in each iteration, until i is less than 5 0-4
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+
+game()
+
+/* 
+const playerSelection = "paper";
+const computerSelection = getComputerChoice();
 const suggestChoiceSelection = suggestChoice();
 console.log(`Computer Chose ${computerSelection}`)
 console.log(playRound(playerSelection, computerSelection));
-
+*/
 
