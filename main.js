@@ -8,7 +8,7 @@
 //ask for user input of rps, case insenstive
 //set win/lose parameters compared to computer choice
 //return win loss to user between input and random choice 
-//return computerChoicesArray[Math.floor(Math.random() * computerChoicesArray.length)]; //random is 0 to x.9999. math.Floor rounds decimal down to choose what object in the array. .length tells what number to multiply by length of array
+
 const options = ["rock", "paper", "scissors"]; //create array with 3 choice pool 
 
 function getPlayerChoice() { //holds input of user in playerchoice
@@ -28,7 +28,9 @@ function getPlayerChoice() { //holds input of user in playerchoice
 }
 
 function getComputerChoice () { //creating function name
-    const computerChoice = options[Math.floor(Math.random() * options.length)]; 
+    const computerChoice = options[Math.floor(Math.random() * options.length)];
+    //options[Math.floor(Math.random() * options.length)]; //random is 0 to x.9999. math.Floor rounds decimal down to choose 
+    //what object in the array. .length tells what number to multiply by length of array
     return computerChoice //return so computerChoice has a value outside of the function
 
 }//(Math.random() * computerChoicesArray.length) in parenthesis for operation precedence(i think)
@@ -42,7 +44,7 @@ function checkWinner(playerSelection, computerSelection){ //checking for winner 
         return "Tie";
     }
     else if(
-        (playerSelection == "rock" && computerSelection == "scissors") ||
+        (playerSelection == "rock" && computerSelection == "scissors") || 
         (playerSelection == "scissors" && computerSelection == "paper") ||
         (playerSelection == "paper" && computerSelection == "rock")
     ){
@@ -92,6 +94,7 @@ function game() { //keep track of 5 rounds
         const playerSelection = getPlayerChoice(); //variable for the getPlayerChoice funtion
         const computerSelection = getComputerChoice(); //variable for the getComputerChoice funtion
         console.log(playRound(playerSelection, computerSelection)); //playRound fucntion in console
+        console.log("--------")
         if(checkWinner(playerSelection, computerSelection) == "Player") { //checkWinner will iterate score values we let
             playerScore++; //iterates playerScore by 1
         }
@@ -99,15 +102,15 @@ function game() { //keep track of 5 rounds
             computerScore++; //iterates computerscore by 1
         }
     }
-    console.log("Game Over")
-    if (playerScore > computerScore){ //
+    console.log("Game Over") //after teh roundsa re over it will log in console "Game over"
+    if (playerScore > computerScore){ // if loop of winner by score, player
         console.log("Player is the Winner!");
     }
-    else if (computerScore > playerScore) {
+    else if (computerScore > playerScore) { //if player score isnt higher than comp score then this case is true
         console.log("Computer is the Winner!");
     }
     else {
-        console.log("It was a tie!");
+        console.log("It was a tie!"); //if none are true/higher score then a tie
     }
 }
 
