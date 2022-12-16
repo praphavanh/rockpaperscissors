@@ -8,17 +8,14 @@
 //ask for user input of rps, case insenstive
 //set win/lose parameters compared to computer choice
 //return win loss to user between input and random choice 
-
+//return computerChoicesArray[Math.floor(Math.random() * computerChoicesArray.length)]; //random is 0 to x.9999. math.Floor rounds decimal down to choose what object in the array. .length tells what number to multiply by length of array
 const computerChoicesArray = ["rock", "paper", "scissors"]; //create array with 3 choice pool 
 
 function getComputerChoice () { //creating function name
-    return computerChoicesArray[Math.floor(Math.random() * computerChoicesArray.length)]; //random is 0 to x.9999. math.Floor rounds decimal down to choose what object in the array. .length tells what number to multiply by length of array
-}
+    const computerChoicesArray = options[(Math.random() * computerChoicesArray.length)]; //computerChoicesArray[] brackets since its array
+}//(Math.random() * computerChoicesArray.length) in parenthesis for operation precedence(i think)
+// math.random function returns random number between 0 and 1. 
+// * computerChoicesArray.length mulitplies the random by the array length
 
-function playRound () {
+getComputerChoice();
 
-}
-
-function playerChoice() {
-    
-}
